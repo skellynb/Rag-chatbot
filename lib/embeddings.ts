@@ -3,7 +3,8 @@ import { HfInference } from "@huggingface/inference";
 const hf = new HfInference(process.env.HF_API_KEY!);
 
 export async function generateEmbedding(text: string) {
-  const input = text.replace("\n", " ");
+  const input = text.replace(/\n/g, " ");
+
 
   const result = await hf.featureExtraction({
     model: "sentence-transformers/all-MiniLM-L6-v2",
